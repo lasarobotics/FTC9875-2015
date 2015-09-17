@@ -1,0 +1,3 @@
+[submodule "ftcandroidlibrary"]
+	path = ftcandroidlibrary
+	url = http://github.com/lasarobotics/ftcandroidlibrary
