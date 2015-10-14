@@ -33,6 +33,7 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
+import com.qualcomm.ftcrobotcontroller.opmodes.*;
 
 /**
  * Register Op Modes
@@ -46,6 +47,6 @@ public class FtcOpModeRegister implements OpModeRegister {
    * @param manager op mode manager
    */
   public void register(OpModeManager manager) {
-
+    manager.register("test", MotorTest.class);
   }
 }
