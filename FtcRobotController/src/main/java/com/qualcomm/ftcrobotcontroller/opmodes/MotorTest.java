@@ -24,10 +24,10 @@ public class MotorTest extends OpMode {
     HashMap<String, Long> time_last_pressed;
 
     public void init() {
-        left_back_motor = hardwareMap.dcMotor.get("left-back");
-        left_front_motor = hardwareMap.dcMotor.get("left-front");
-        right_back_motor = hardwareMap.dcMotor.get("right-back");
-        right_front_motor = hardwareMap.dcMotor.get("right-front");
+        left_back_motor = hardwareMap.dcMotor.get("lb");
+        left_front_motor = hardwareMap.dcMotor.get("lf");
+        right_back_motor = hardwareMap.dcMotor.get("rb");
+        right_front_motor = hardwareMap.dcMotor.get("rf");
 
         time_since_last_pressed.put("a", new Long(0));
         time_last_pressed.put("a", new Long(0));
