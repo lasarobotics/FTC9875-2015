@@ -8,9 +8,9 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by will on 10/6/15.
  */
 
-public class MotorTest extends OpMode {
-    DcMotor left_back_motor, left_front_motor, right_back_motor, right_front_motor, brush_motor;
-    // Servo lever_servo;
+public class TeleOp extends OpMode {
+    DcMotor left_back_motor, left_front_motor, right_back_motor, right_front_motor, brush_motor, winch_motor;
+    Servo arm_servo, bucket_servo;
     double speed_scale = 1;
     float trigger_threshold = 0.6f;
     double t = System.nanoTime();

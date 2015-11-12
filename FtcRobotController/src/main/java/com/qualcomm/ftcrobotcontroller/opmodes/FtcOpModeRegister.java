@@ -47,7 +47,7 @@ public class FtcOpModeRegister implements OpModeRegister {
    * @param manager op mode manager
    */
   public void register(OpModeManager manager) {
-    manager.register("test", MotorTest.class);
+    manager.register("test", TeleOp.class);
     manager.register("vision", VisionTest.class);
     manager.register("\"autonomous\"", Autonomous.class);
   }
