@@ -31,9 +31,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.lasarobotics.library.monkeyc.MonkeyC;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
-import com.qualcomm.ftcrobotcontroller.opmodes.*;
 
 /**
  * Register Op Modes
@@ -48,7 +48,7 @@ public class FtcOpModeRegister implements OpModeRegister {
    */
   public void register(OpModeManager manager) {
     manager.register("test", TeleOp.class);
-    manager.register("vision", VisionTest.class);
-    manager.register("\"autonomous\"", Autonomous.class);
+    manager.register("train monkeyc", MonkeyCTrain.class);
+    manager.register("run monkeyc", MonkeyCRun.class);
   }
 }

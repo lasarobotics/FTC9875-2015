@@ -61,7 +61,7 @@ public class MainActivity extends Activity implements CameraBridgeViewBase.CvCam
     public void onResume() {
         super.onResume();
         if(!OpenCVLoader.initDebug()) {
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_12, this, mLoaderCallback);
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
         } else {
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
@@ -89,7 +89,7 @@ public class MainActivity extends Activity implements CameraBridgeViewBase.CvCam
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
 
-        CascadeObjectDetection.drawObjects(mRgba, detector.detect(mGray), new ColorRGBA(0, 255, 0));
+        Drawing.drawRectangle(mRgba, detector, new ColorRGBA(0, 255, 0));
         Drawing.drawText(mRgba, "Test", new Point(32, 32), 1f, new ColorRGBA(0, 255, 0));
 
         return mRgba;

@@ -3,35 +3,42 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.lasarobotics.library.monkeyc.*;
 
 /**
  * Created by will on 10/6/15.
  */
 
-public class TeleOp extends OpMode {
+public class MonkeyCTrain extends OpMode {
     DcMotor left_back_motor, left_front_motor, right_back_motor, right_front_motor, brush_motor, winch_motor;
     Servo arm_servo, bucket_servo;
     double speed_scale = 1;
-    float trigger_threshold = 0.6f;
+    double trigger_threshold = 0.75;
+
     double t = System.nanoTime();
     double last_t = 0;
     double dt = 0;
     double servo_rv = 5;
 
+    MonkeyC monkeyC;
+    String monkeyCFileName = "main";
+
     public void init() {
+        monkeyC = new MonkeyC();
+
         left_back_motor = hardwareMap.dcMotor.get("lb");
         left_front_motor = hardwareMap.dcMotor.get("lf");
         right_back_motor = hardwareMap.dcMotor.get("rb");
         right_front_motor = hardwareMap.dcMotor.get("rf");
-	
+
         brush_motor = hardwareMap.dcMotor.get("b");
-	    winch_motor = hardwareMap.dcMotor.get("w");
-	
-	    arm_servo = hardwareMap.servo.get("a");
-	    bucket_servo = hardwareMap.servo.get("bk");
+        winch_motor = hardwareMap.dcMotor.get("w");
+
+        arm_servo = hardwareMap.servo.get("a");
+        bucket_servo = hardwareMap.servo.get("bk");
     }
     public void loop() {
-        updateTime();
+        monkeyC.add(gamepad1, gamepad2);
 
         speed_scale = gamepad1.a ? 0.5 : (gamepad1.b ? 0.25 : 1);
         if(gamepad1.left_bumper) {
@@ -59,15 +66,18 @@ public class TeleOp extends OpMode {
             updateServo(bucket_servo, servo_rv);
         }
 
-	    if(gamepad1.left_trigger > trigger_threshold) {
-          brush_motor.setPower(1);
+        if(gamepad1.left_trigger > trigger_threshold) {
+            brush_motor.setPower(1);
         } else if(gamepad1.right_trigger > trigger_threshold) {
-	      brush_motor.setPower(-1);
-	    } else {
+            brush_motor.setPower(-1);
+        } else {
             brush_motor.setPower(0);
         }
+
     }
     public void stop() {
+        monkeyC.write(monkeyCFileName, hardwareMap.appContext);
+
         left_back_motor.setPower(0);
         left_front_motor.setPower(0);
         right_back_motor.setPower(0);
@@ -80,6 +90,6 @@ public class TeleOp extends OpMode {
         t = System.nanoTime();
     }
     private void updateServo(Servo servo, double rv) {
-        servo.setPosition(servo.getPosition() + dt/1000000 * (rv / 360));
+        servo.setPosition(servo.getPosition() + dt / 1000000 * (rv / 360));
     }
 }
