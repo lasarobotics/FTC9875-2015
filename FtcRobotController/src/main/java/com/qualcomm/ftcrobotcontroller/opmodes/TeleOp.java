@@ -16,7 +16,7 @@ public class TeleOp extends OpMode {
     double t = System.nanoTime();
     double last_t = 0;
     double dt = 0;
-    double servo_rv = 5;
+    double servo_rv = 10;
 
     public void init() {
         left_back_motor = hardwareMap.dcMotor.get("lb");
