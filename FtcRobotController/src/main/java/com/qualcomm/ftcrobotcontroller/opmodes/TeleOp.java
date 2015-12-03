@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import java.math.*;
+
 /**
  * Created by will on 10/6/15.
  */
@@ -25,7 +27,7 @@ public class TeleOp extends OpMode {
         right_front_motor = hardwareMap.dcMotor.get("rf");
 	
         brush_motor = hardwareMap.dcMotor.get("b");
-	    winch_motor = hardwareMap.dcMotor.get("w");
+        winch_motor = hardwareMap.dcMotor.get("w");
 	
 	    arm_servo = hardwareMap.servo.get("a");
 	    bucket_servo = hardwareMap.servo.get("bk");
@@ -59,12 +61,18 @@ public class TeleOp extends OpMode {
             updateServo(bucket_servo, servo_rv);
         }
 
-	    if(gamepad1.left_trigger > trigger_threshold) {
+        if(gamepad1.left_trigger > trigger_threshold) {
           brush_motor.setPower(1);
         } else if(gamepad1.right_trigger > trigger_threshold) {
 	      brush_motor.setPower(-1);
 	    } else {
             brush_motor.setPower(0);
+        }
+
+        if(gamepad1.dpad_left) {
+            winch_motor.setPower(1);
+        } else if(gamepad1.dpad_right) {
+            winch_motor.setPower(-1);
         }
     }
     public void stop() {
@@ -80,6 +88,6 @@ public class TeleOp extends OpMode {
         t = System.nanoTime();
     }
     private void updateServo(Servo servo, double rv) {
-        servo.setPosition(servo.getPosition() + dt/1000000 * (rv / 360));
+        servo.setPosition(Math.min(Math.max(servo.getPosition() + dt / 1000000 * (rv / 360), 0), 1));
     }
 }
