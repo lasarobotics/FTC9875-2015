@@ -47,6 +47,7 @@ public class FtcOpModeRegister implements OpModeRegister {
    */
   public void register(OpModeManager manager) {
     manager.register("TeleOp", TeleOp.class);
-    manager.register("WinchTest", WinchTest.class);
+    manager.register("WheelsOnly", TeleOp_WheelsOnly.class);
+    manager.register("WheelsandBrushOnly", TeleOp_WheelsandBrushOnly.class);
   }
 }
