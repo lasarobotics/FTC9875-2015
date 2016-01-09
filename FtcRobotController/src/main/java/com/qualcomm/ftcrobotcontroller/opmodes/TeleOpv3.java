@@ -1,5 +1,6 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.lasarobotics.library.util.SmartMotor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -9,12 +10,12 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 
 public class TeleOpv3 extends OpMode {
-    DcMotor left_motor, right_motor;
+    SmartMotor left_motor, right_motor;
     double speed_scale = 1;
 
     public void init() {
-        left_motor = hardwareMap.dcMotor.get("l");
-        right_motor = hardwareMap.dcMotor.get("r");
+        left_motor = new SmartMotor(this, "l");
+        right_motor = new SmartMotor(this, "r");
     }
     public void loop() {
         speed_scale = gamepad1.a ? 0.5 : (gamepad1.b ? 0.25 : 1);
