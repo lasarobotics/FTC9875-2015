@@ -46,8 +46,6 @@ public class FtcOpModeRegister implements OpModeRegister {
    * @param manager op mode manager
    */
   public void register(OpModeManager manager) {
-    manager.register("TeleOp", TeleOp.class);
-    manager.register("WheelsOnly", TeleOp_WheelsOnly.class);
-    manager.register("WheelsandBrushOnly", TeleOp_WheelsandBrushOnly.class);
+    manager.register("TeleOp", TeleOpv3.class);
   }
 }
