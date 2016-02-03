@@ -9,25 +9,16 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class MonkeyCWrite {
     private Logic logic;
     private OpMode context;
-    private boolean twoControllers;
     private MonkeyC monkeyC = new MonkeyC();
 
     Controller c1, c2;
 
-    private OptionMenu fileChooser;
-    private TextCategory fileName;
-
     public MonkeyCWrite(OpMode context, boolean twoControllers) {
         this.context = context;
-        this.twoControllers = twoControllers;
+        logic = new Logic(context, twoControllers);
     }
 
     public void init() {
-        OptionMenu.Builder builder = new OptionMenu.Builder(context.hardwareMap.appContext);
-        fileName = new TextCategory("filename");
-        fileChooser = builder.create();
-        fileChooser.show();
-
         logic.init();
     }
 
@@ -43,6 +34,6 @@ public class MonkeyCWrite {
         logic.stop();
 
         monkeyC.end();
-        monkeyC.write(fileName.getResult(), true);
+        monkeyC.write("default.txt", true);
     }
 }

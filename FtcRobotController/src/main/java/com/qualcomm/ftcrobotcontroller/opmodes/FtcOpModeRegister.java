@@ -48,9 +48,5 @@ public class FtcOpModeRegister implements OpModeRegister {
     public void register(OpModeManager manager) {
         manager.register("TeleOp1", TeleOp1.class);
         manager.register("TeleOp2", TeleOp2.class);
-        manager.register("MCW1", MonkeyCWrite1.class);
-        manager.register("MCW2", MonkeyCWrite2.class);
-        manager.register("MCR1", MonkeyCRead1.class);
-        manager.register("MCR2", MonkeyCRead2.class);
     }
 }
