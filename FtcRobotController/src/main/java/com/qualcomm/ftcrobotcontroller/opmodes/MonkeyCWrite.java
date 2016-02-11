@@ -6,12 +6,15 @@ import com.lasarobotics.library.options.OptionMenu;
 import com.lasarobotics.library.options.TextCategory;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-public class MonkeyCWrite {
+public class MonkeyCWrite extends OpMode {
     private Logic logic;
     private OpMode context;
     private MonkeyC monkeyC = new MonkeyC();
 
     Controller c1, c2;
+
+    private OptionMenu menu;
+    private TextCategory filename;
 
     public MonkeyCWrite(OpMode context, boolean twoControllers) {
         this.context = context;
@@ -19,6 +22,12 @@ public class MonkeyCWrite {
     }
 
     public void init() {
+        OptionMenu.Builder builder = new OptionMenu.Builder(context.hardwareMap.appContext);
+        filename = new TextCategory("program name");
+        builder.addCategory(filename);
+        menu = builder.create();
+        menu.show();
+
         logic.init();
     }
 
@@ -34,6 +43,6 @@ public class MonkeyCWrite {
         logic.stop();
 
         monkeyC.end();
-        monkeyC.write("default.txt", true);
+        monkeyC.write("monkeyc_" + filename.getResult() + ".txt", true);
     }
 }

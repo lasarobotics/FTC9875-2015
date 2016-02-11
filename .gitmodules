@@ -1,6 +1,3 @@
 [submodule "ftcandroidlibrary"]
 	path = ftcandroidlibrary
-	url = http://github.com/lasarobotics/ftcandroidlibrary
-[submodule "ftcvision"]
-	path = ftcvision
-	url = https://github.com/lasarobotics/FTCVision.git
+	url = https://github.com/lasarobotics/FTCLibrary

@@ -2,6 +2,8 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.lasarobotics.library.monkeyc.MonkeyData;
 import com.lasarobotics.library.monkeyc.MonkeyDo;
+import com.lasarobotics.library.options.OptionMenu;
+import com.lasarobotics.library.options.TextCategory;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 public class MonkeyCRead {
@@ -9,17 +11,26 @@ public class MonkeyCRead {
     private OpMode context;
     private MonkeyDo monkeyDo;
 
+    private OptionMenu menu;
+    private TextCategory filename;
+
     public MonkeyCRead(OpMode context, boolean twoControllers) {
         this.context = context;
         logic = new Logic(context, twoControllers);
     }
 
     public void init() {
-        monkeyDo = new MonkeyDo("default.txt");
+        OptionMenu.Builder builder = new OptionMenu.Builder(context.hardwareMap.appContext);
+        filename = new TextCategory("program name");
+        builder.addCategory(filename);
+        menu = builder.create();
+        menu.show();
+
         logic.init();
     }
 
     public void start() {
+        monkeyDo = new MonkeyDo("monkeyc_" + filename.getResult() + ".txt");
         monkeyDo.onStart();
     }
 

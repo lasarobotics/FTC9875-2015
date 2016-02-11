@@ -1,3 +1,4 @@
 // FTC Apps
-include ':FtcRobotController', ':ftc-library'
+include ':FtcRobotController', ':sample', ':ftc-library'
+project(':sample').projectDir = new File('ftcandroidlibrary/sample')
 project(':ftc-library').projectDir = new File('ftcandroidlibrary/ftc-library')
