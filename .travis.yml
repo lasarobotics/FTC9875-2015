@@ -3,6 +3,6 @@ android:
   components:
     - platform-tools
     - tools
-    - build-tools-21.1.2
-    - android-21
-    - addon-google_apis-google-21
+    - build-tools-19.1.0
+    - android-19
+    - addon-google_apis-google-19
