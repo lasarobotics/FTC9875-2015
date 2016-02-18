@@ -9,6 +9,8 @@ public class TeleOp2 extends OpMode {
         logic.init();
     }
 
+    public void start() { logic.start(); }
+
     public void loop() {
         logic.updateControllers();
         logic.loop();
